@@ -1,0 +1,16 @@
+{
+  "name": "bumpIt",
+  "version": "0.0.0",
+  "description": "Bump a module version in an xml file",
+  "main": "bumpIt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hasse Feldthaus",
+  "license": "MIT",
+  "dependencies": {
+    "xmldom": "~0.1.19",
+    "xpath": "0.0.9",
+    "minimist": "~1.1.0"
+  }
+}
