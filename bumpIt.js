@@ -34,11 +34,17 @@ if (argv.help || argv.h) {
         var newVersion = (typeof enforcedVersion !== 'undefined') ? enforcedVersion : version.join('.');
         console.log('New version is ' + newVersion);
         versionNodes[0].firstChild.data = newVersion;
-        fs.writeFile(fileName, doc, 'utf-8', function (err) {
+        fs.writeFile(fileName + '_NEW', doc, 'utf-8', function (err) {
             if (err) {
                 console.log(err);
                 return;
             }
+            fs.rename(fileName + '_NEW', fileName, function (err) {
+                if (err) {
+                    console.log(err);
+                    console.log('Something went wrong - the new file might be in ' + fileName + '_NEW ?\n\nSorry for any inconveniences.');
+                }
+            });
         });
     });
 }
