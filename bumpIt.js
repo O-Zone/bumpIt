@@ -31,7 +31,7 @@ if (argv.help || argv.h) {
         if (versionToBump === 1) {
             version[2] = '0';
         }
-        var newVersion = (typeof enforcedVersion !== undefined) ? enforcedVersion : version.join('.');
+        var newVersion = (typeof enforcedVersion !== 'undefined') ? enforcedVersion : version.join('.');
         console.log('New version is ' + newVersion);
         versionNodes[0].firstChild.data = newVersion;
         fs.writeFile(fileName, doc, 'utf-8', function (err) {
