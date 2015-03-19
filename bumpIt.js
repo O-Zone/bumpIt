@@ -7,8 +7,9 @@ var myDOMParser = require('xmldom').DOMParser;
 
 var VERSIONTYPES = ['major', 'minor', 'patch'];
 var versionToBump = (typeof argv.vType === 'undefined') ? 2 : argv.vType;
+var itsABuildFile = false;
 var fileName = argv.file; // || 'manifest.xml';
-if (!fileName) {
+if (typeof fileName !== 'undefined') {
     var dir = fs.readdirSync(process.cwd());
     for (var i=0; i < dir.length; i++) {
         if (dir[i] === 'manifest.xml') {
@@ -20,8 +21,8 @@ if (!fileName) {
             break;
         }
     }
+    var itsABuildFile = fileName.substr(fileName.length - 9) === 'build.xml';
 }
-var itsABuildFile = fileName.substr(fileName.length - 9) === 'build.xml';
 var xpathToVersion = argv.xpath || (itsABuildFile ? '//property[@name="module.version"]' : '//module/version');
 var enforcedVersion = argv.version;
 var preserveFile = argv.preserveFile;
